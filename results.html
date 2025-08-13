@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{{ .Title }}</title>
+	<link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+	<header class="header">
+		<div class="container">
+			<h1>ExamCenterHub</h1>
+			<p class="subtitle">Nearest centers from {{ .HomeCity }}</p>
+		</div>
+	</header>
+	<main class="container">
+		<a href="/" class="btn-link">← New search</a>
+		<div class="grid">
+			{{ range .Results }}
+				<div class="card">
+					<h2>{{ .Name }}</h2>
+					<p class="muted">Distance: {{ .Distance }}</p>
+					<ul class="centers">
+						{{ range .Centers }}
+							<li>🏢 {{ . }}</li>
+						{{ end }}
+					</ul>
+				</div>
+			{{ end }}
+		</div>
+	</main>
+	<footer class="footer">
+		<div class="container">Made with Go • ExamCenterHub</div>
+	</footer>
+</body>
+</html> 

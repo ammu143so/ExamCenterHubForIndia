@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{{ .Title }}</title>
+	<link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+	<header class="header">
+		<div class="container">
+			<h1>ExamCenterHub</h1>
+			<p class="subtitle">Find the nearest examination centers in India</p>
+		</div>
+	</header>
+	<main class="container">
+		<div class="card">
+			<h2>Search nearest centers</h2>
+			{{ if .Error }}
+				<div class="alert alert-error">{{ .Error }}</div>
+			{{ end }}
+			<form method="post" action="/search" class="form-grid">
+				<label for="home_city">Home City</label>
+				<input list="cities" id="home_city" name="home_city" placeholder="Type or select your city" required />
+				<datalist id="cities">
+					{{ range .Cities }}
+						<option value="{{ . }}"></option>
+					{{ end }}
+				</datalist>
+				<button type="submit" class="btn-primary">Find Centers</button>
+			</form>
+		</div>
+		<section class="tips">
+			<h3>Tips</h3>
+			<ul>
+				<li>Start typing to filter cities, then select from suggestions.</li>
+				<li>Results exclude your home city automatically.</li>
+				<li>Shows up to three nearest cities with available centers.</li>
+			</ul>
+		</section>
+	</main>
+	<footer class="footer">
+		<div class="container">Made with Go • ExamCenterHub</div>
+	</footer>
+</body>
+</html> 
